@@ -7,6 +7,14 @@ function App() {
     setCuenta(cuenta + 1)
   };
 
+  const handleResta = () => {
+    setCuenta(cuenta - 1)
+  };  
+
+  const handleReset = () => {
+    setCuenta(cuenta - cuenta)
+  };  
+
   return (
     <div className="App">
       <h3 className="text-center">Contador</h3>
@@ -18,7 +26,9 @@ function App() {
         justifyContent:"flex-end",
         marginRight: "5px",
       }}>
-              <button type="button" className="btn btn-primary" onClick={handleClick}>+1</button>
+              <button type="button" className="btn btn-primary" onClick={handleClick}>+1</button> 
+              <button type="button" className="btn btn-primary" onClick={handleResta}>-1</button>
+              <button type="button" className="btn btn-danger" onClick={handleReset}>Reset</button>
       </div>
     </div>
   );
