@@ -2,18 +2,27 @@ import { useState } from "react";
 function App() {
 
   const [cuenta, setCuenta] = useState(0);
+  const [paso, setPaso] = useState(1);
 
-  const handleClick = () => {
-    setCuenta(cuenta + 1)
+  const handlePlusClick = () => {
+    setCuenta(cuenta + paso)
   };
 
-  const handleResta = () => {
-    setCuenta(cuenta - 1)
+  const handleMinusClick = () => {
+    setCuenta(cuenta - paso)
   };  
 
-  const handleReset = () => {
+  const handleResetClick = () => {
     setCuenta(cuenta - cuenta)
+    setPaso(1);
   };  
+
+  const handleInputChange = (e) => {
+    if (isNaN(e.target.value)) {
+      return;
+    }
+    setPaso (Number(e.target.value));
+  };
 
   return (
     <div className="App">
@@ -26,9 +35,42 @@ function App() {
         justifyContent:"flex-end",
         marginRight: "5px",
       }}>
-              <button type="button" className="btn btn-primary" onClick={handleClick}>+1</button> 
-              <button type="button" className="btn btn-primary" onClick={handleResta}>-1</button>
-              <button type="button" className="btn btn-danger" onClick={handleReset}>Reset</button>
+
+              <label> 
+                Paso
+              <input 
+                id="paso"
+                name="paso"
+                type="text" 
+                style={{width:"60px", marginLeft:"5px"}} 
+                onChange={handleInputChange}
+                value={paso}/>
+              </label>
+       
+              <button 
+                type="button" 
+                className="btn btn-primary" 
+                style={{ marginLeft: "10px"}} 
+                onClick={handlePlusClick}>
+                  Suma  
+              </button> 
+
+              <button 
+                type="button" 
+                className="btn btn-danger" 
+                style={{ marginLeft: "10px"}} 
+                onClick={handleResetClick}>
+                  Reset
+              </button>
+              
+              <button 
+                type="button" 
+                className="btn btn-primary" 
+                style={{ marginLeft: "10px"}} 
+                onClick={handleMinusClick}>
+                  Resta
+              </button>
+              
       </div>
     </div>
   );
